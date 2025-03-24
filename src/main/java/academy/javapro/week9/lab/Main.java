@@ -7,15 +7,15 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        // Create a repository for magazines
+        // Creats repo for magazines
         Repository<Magazine> magazineRepository = new Repository<>();
 
-        // Create several magazine instances
+        // Creates several magazine inst
         Magazine magazine1 = new Magazine("National Geographic", 243, "June 2023");
         Magazine magazine2 = new Magazine("Time", 156, "April 2023");
         Magazine magazine3 = new Magazine("Wired", 92, "May 2023");
 
-        // Add magazines to the repository
+        // Adds magazines to the repo
         magazineRepository.add(magazine1);
         magazineRepository.add(magazine2);
         magazineRepository.add(magazine3);
@@ -23,29 +23,27 @@ public class Main {
         System.out.println("=== Magazine Repository Demo ===");
         System.out.println("Added magazines to repository. Count: " + magazineRepository.count());
 
-        // Print all magazines
+        // Prints all magazines
         System.out.println("\nAll magazines:");
         for (Magazine magazine : magazineRepository.getAll()) {
             System.out.println("- " + magazine);
         }
 
-        // Find magazines by title (contains a keyword)
+        // Find magazines by title 
         System.out.println("\nMagazines containing \"Geo\" in the title:");
-        List<Magazine> geoMagazines = magazineRepository.find(
-                magazine -> magazine.getTitle().contains("Geo"));
+        List<Magazine> geoMagazines = magazineRepository.find(magazine -> magazine.getTitle().contains("Geo"));
         for (Magazine magazine : geoMagazines) {
             System.out.println("- " + magazine);
         }
 
-        // Find magazines published after a certain issue number
+        // Finds magazines published after a certain issue number
         System.out.println("\nMagazines with issue number > 100:");
-        List<Magazine> recentMagazines = magazineRepository.find(
-                magazine -> magazine.getIssueNumber() > 100);
+        List<Magazine> recentMagazines = magazineRepository.find(magazine -> magazine.getIssueNumber() > 100);
         for (Magazine magazine : recentMagazines) {
             System.out.println("- " + magazine);
         }
 
-        // Test the equals method by adding a duplicate magazine
+        // Tests equals method by adding a duplicate magazine
         System.out.println("\nAdding duplicate magazine...");
         Magazine duplicateMagazine = new Magazine("National Geographic", 243, "June 2023");
         System.out.println("Is magazine already in repository? " +
@@ -61,15 +59,13 @@ public class Main {
             System.out.println();
         }
 
-        // We could also demonstrate finding a magazine by its unique identifier
+        // finds magazine by unique identifier
         String searchId = magazine1.getUniqueIdentifier();
         System.out.println("Finding magazine with ID: " + searchId);
-        List<Magazine> foundMagazines = magazineRepository.find(
-                magazine -> magazine.getUniqueIdentifier().equals(searchId));
+        List<Magazine> foundMagazines = magazineRepository.find(magazine -> magazine.getUniqueIdentifier().equals(searchId));
         if (!foundMagazines.isEmpty()) {
             System.out.println("Found: " + foundMagazines.get(0));
         }
-
 
         // Test exception handling
         try {
@@ -87,4 +83,3 @@ public class Main {
         }
     }
 }
-
